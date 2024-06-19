@@ -1,0 +1,354 @@
+/* Add the necessary styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #006400;
+  padding: 10px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #006400;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  animation: slideIn 0.3s ease-in-out;
+  /* Other styles... */
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#searchInput {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+#searchBtn {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-left: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+#searchBtn:hover {
+  background-color: #45a049;
+}
+
+#searchBtn i {
+  pointer-events: none;
+}
+
+.sidebar {
+  width: 250px; /* Adjust width as needed */
+  height: 100vh; /* Full viewport height */
+  background-color: #fff; /* White background */
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: -250px; /* Initially hidden off the screen */
+  transition: right 0.3s ease;
+  z-index: 101; /* Ensure the sidebar is on top of the header */
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Add a box shadow for a visual effect */
+}
+
+.sidebar.open {
+  right: 0; /* Show the sidebar */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-sidebar {
+  background-color: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu li a {
+  display: block;
+  padding: 10px;
+  color: #333; /* Default text color */
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #006400; /* Dark green on hover */
+  color: #fff; /* White text on hover */
+}
+.footer {
+  background-color: #006400; /* Dark green */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer .social-icons {
+  margin-top: 20px;
+}
+
+.footer .social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.featured-products {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.featured-products h2 {
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease-in-out; /* Animation effect */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Define keyframes for the fadeInDown animation */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Product Card Styles */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+  animation: fadeInUp 1s ease-in-out; /* Animation effect */
+}
+
+/* Define keyframes for the fadeInUp animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Product Image Container */
+.product-image {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s; /* Add transition effect */
+}
+
+.product-image img:hover {
+  transform: scale(1.1); /* Scale up image on hover */
+}
+
+.product-card h3 {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.product-card p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.product-card .price {
+  font-weight: bold;
+  color: #006400; /* Dark green */
+}
+
+.product-card .view-more-btn,
+.product-card .add-to-cart-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #006400; /* Dark green */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.product-card .view-more-btn:hover,
+.product-card .add-to-cart-btn:hover {
+  background-color: #004d00; /* Darker green on hover */
+}
+
+
+#cart {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 45%;
+  background-color: #fff;
+  z-index: 999;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#cart .close-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-table th,
+#cart-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#cart-table th {
+  background-color: #006400;
+  color: white;
+}
+
+#checkout {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#checkout:hover {
+  background-color: #004d00;
+}

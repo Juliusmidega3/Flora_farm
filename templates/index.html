@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agriculture Ecommerce</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="swiper.min.css">
+  <link rel="stylesheet" href="{% static "\css\index.css"%}">
+
+  
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="index2.html">
+        <h1>Crop Connect</h1>
+      </a>
+    </div>
+    <div class="header-content"> 
+      <div class="cart-icon" id="cartIcon">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge" id="cartBadge">0</span>
+      </div>
+      <button id="sidebarToggle" aria-label="Toggle Sidebar">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </header>
+  <div id="alert-container" class="alert-container"></div>
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <!-- Add a window close icon for closing the sidebar -->
+      <button id="closeSidebar" aria-label="Close Sidebar">
+        <i class="fa fa-window-close"></i>
+      </button>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="products">Products</a></li>
+      <li><a href="login">Sign In</a></li>
+    </ul>
+  </div>
+  <div id="cart" class="cart">
+    <button class="close-icon" id="closeCart" aria-label="Close Shopping Cart">
+      <i class="fa fa-window-close"></i>
+    </button>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cart items will be dynamically added here -->
+      </tbody>
+    </table>
+    <p>Total Price: <span id="total-price">Ksh 0</span></p>
+    <button id="checkout" class="btn" onclick="window.location.href='{% url 'process_checkout' %}'">Proceed to Checkout</button>
+  </div>
+  
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Search products..." value="{{ query|default:'' }}">
+    <button id="searchBtn"><i class="fa fa-search"></i></button>
+  </section>
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="categories">
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category1">
+                        <img src="{% static 'images/Banana.jpg' %}" alt="Seeds and Plants">
+                        <h3>Seeds and Plants</h3>
+                    </a>
+                </div>
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category2">
+                        <img src="{% static 'images/Avacado.jpg' %}" alt="Fertilizers & Soil Amendments">
+                        <h3>Fertilizers & Soil Amendments</h3>
+                    </a>
+                </div>
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category3">
+                        <img src="{% static 'images/Hoho.jpg' %}" alt="Tools and Equipment">
+                        <h3>Tools and Equipment</h3>
+                    </a>
+                </div>
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category4">
+                        <img src="{% static 'images/Grapes.jpg' %}" alt="Pesticides and Pest Control">
+                        <h3>Pesticides and Pest Control</h3>
+                    </a>
+                </div>
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category5">
+                        <img src="{% static 'images/Ndimu.jpg' %}" alt="Animal Feeds and Supplies">
+                        <h3>Animal Feeds and Supplies</h3>
+                    </a>
+                </div>
+                <div class="category-container">
+                    <a href="{% url 'products' %}#category6">
+                        <img src="{% static 'images/wheelbarrow.jpeg' %}" alt="Agricultural Services and Consultation">
+                        <h3>Agricultural Services and Consultation</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+  <div id="products-container">
+    {% if products %}
+        {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p class="price">{{ product.price }}</p>
+                <!-- Add other product details here -->
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+  </div>
+  <section class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="product-grid" id="productGrid">
+      {% for product in featured_products %}
+      <div class="product-card">
+        <div class="product-image">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <h3>{{ product.name }}</h3>
+        <p class="price">Ksh {{ product.price }}</p>
+        <a href="#" class="view-more-btn">View More</a>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Promotional Banner -->
+  <section class="promotional-banner">
+    <div class="banner-content">
+        <h2>Summer Sale!</h2>
+        <p>Get up to 50% off on selected items. Limited time offer. Shop now!</p>
+        <a href="{% url 'products' %}">
+            <button class="shop-now-btn">Shop Now</button>
+        </a>
+    </div>
+</section>
+
+
+  <!-- Customer Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-carousel">   
+      {% for testmony in Testimonials %}  
+      <div class="ad-container">
+        <h1>{{testmony.name}}<span class="dots">•••</span></h1>
+        <p class="quote">“{{testmony.description}}.” - Uri Flores<span class="dots">•••</span></p>
+        <a href="products">
+          <button class="shop-now">Shop Now</button>
+        </a>        
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="swiper.min.js"></script>
+  <script src="{% static '\script\index.js'%}" defer></script>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      const query = document.getElementById('searchInput').value;
+      window.location.href = `{% url 'search_products' %}?query=${query}`;
+  });
+  </script>
+</body>
+</html>

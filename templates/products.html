@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="swiper.min.css">
+  <link rel="stylesheet" href="{% static "/css/products.css" %}">  
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="{% url 'index' %}">
+        <h1>Crop Connect</h1>
+      </a>
+    </div>
+    <div class="header-content"> 
+      <div class="cart-icon">
+        <i class="fa fa-shopping-cart"></i>
+        <span id="cart-badge" class="badge">0</span>
+      </div>
+      <button id="sidebarToggle" aria-label="Toggle Sidebar">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </header>
+  <div id="alert-container" class="alert-container"></div>
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <button id="closeSidebar" aria-label="Close Sidebar">
+        <i class="fa fa-window-close"></i>
+      </button>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{% url 'products' %}">Products</a></li>
+      <li><a href="{% url 'register' %}">Sign In</a></li>
+    </ul>
+  </div>
+  <div id="cart" class="cart">
+    <button class="close-icon" id="closeCart" aria-label="Close Shopping Cart">
+      <i class="fa fa-window-close"></i>
+    </button>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cart content goes here -->
+      </tbody>
+    </table>
+    <p>Total Price: <span id="total-price">Ksh 0</span></p>
+    <button id="checkout" class="btn" onclick="window.location.href='{% url 'process_checkout' %}'">Proceed to Checkout</button>
+  </div>
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Search products..." value="{{ query|default:'' }}">
+    <button id="searchBtn"><i class="fa fa-search"></i></button>
+  </section>
+
+  <main>
+ 
+
+    <section class="featured-products" id="category1">
+      <h2>Seeds and Plants</h2>      
+      <div class="product-grid" id="productGrid">
+        {% for product in Seeds %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>        
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="featured-products" id="category2">
+      <h2>Fruits and Vegetables</h2>
+      <div class="product-grid" id="productGrid">
+        {% for product in Fruits %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="featured-products" id="category2">
+      <h2>Fertilizers & Soil Ammendments</h2>
+      <div class="product-grid" id="productGrid">
+        {% for product in Fertilizers %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!--
+    <section class="featured-products" id="category3">
+      <h2>Tools & Equipments</h2>      
+      <div class="product-grid" id="productGrid">
+        {% for product in Equipment %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>        
+        {% endfor %}
+      </div>
+    </section>
+
+  -->
+    <section class="featured-products" id="category4">
+      <h2>Pesticides and Pest Control</h2>     
+      <div class="product-grid" id="productGrid">
+        {% for product in Pesticides %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+
+    <section class="featured-products" id="category5">
+      <h2>Animal Feeds & Supplies</h2>     
+      <div class="product-grid" id="productGrid">
+        {% for product in AnimalFeeds %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="featured-products" id="category6">
+      <h2>agricultural Services & Consultation</h2>     
+      <div class="product-grid" id="productGrid">
+        {% for product in AgricuturalServices %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">Ksh {{ product.price }}</p>
+          <a href="#" class="view-more-btn">View More</a>
+          <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static "\script\product.js" %}"></script>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      const query = document.getElementById('searchInput').value;
+      window.location.href = `{% url 'search_products' %}?query=${query}`;
+  });
+  </script>
+</body>
+</html>

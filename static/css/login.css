@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+}
+.header {
+  background-color: #006400; /* Dark green */
+  padding: 10px;
+  color: #fff; /* White text */
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Ensure the header is on top of other page elements */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.logo {
+  margin-right: auto; /* Pushes logo to the left */
+}
+.logo a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff0000; /* Red */
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+.sidebar {
+  width: 45%; /* 40% of total page width */
+  height: 100vh; /* 65% of viewport height */
+  background-color: #fff; /* White background */
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: -45%; /* Initially hidden off the screen */
+  transition: left 0.3s ease;
+  z-index: 101; /* Ensure the sidebar is on top of the header */
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Add a box shadow for a visual effect */
+}
+
+.sidebar.open {
+  right: 0; /* Show the sidebar by moving it to the left */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-sidebar {
+  background-color: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  color: aliceblue;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.loginForm {
+    width: 300px;
+    height: 410px;
+    margin-left: 30%;
+    border-radius: 15px;
+    box-shadow: -13px -13px 20px -4px #9d9999;
+}
+h2 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 20px;
+    align-items: center;
+    margin: 15%;
+}
+.inputField {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+}
+.inputField input{
+    width: 100%;
+    height: 100%;
+    padding-left: 45px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #dde1e7;
+    border-radius: 15px;
+    margin: 0 28px;
+    box-shadow: inset -8px -8px 8px -4px #9d9999;
+}
+.inputField label {
+    position: absolute;
+    top: 18px;
+    left: 45px;
+    color: #09a3a3;
+    transition: 0.4s;
+    letter-spacing: 1px;
+}
+inputField input:focus ~ label,
+.inputField input:valid ~ label{
+    top: 2px;
+    font-size: 12px;
+}
+.log{
+    width: 80%;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: capitalize;
+    margin: 30px 0 0 10%;
+    cursor: pointer;
+    background-color: #02c8db;
+
+}
+button:hover{
+    background-color: aqua;
+}
+.link{
+    margin-top: 15px;
+    text-align: center;
+    color: #9d9999;
+}
+.link a {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #9d9999;
+}
+h3{
+color: red;
+}
+
+h5{
+  color: red;
+}
+
+.footer {
+  background-color: #006400; /* Dark green */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer .social-icons {
+  margin-top: 20px;
+}
+
+.footer .social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 20px;
+}

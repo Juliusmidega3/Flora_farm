@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    <link rel="stylesheet" href="{% static "\css\login.css" %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="swiper.min.css">
+   
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+          <a href="index">
+            <h1>Crop Connect</h1>
+          </a>
+        </div>
+        <div class="header-content"> 
+          <div class="cart-icon">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="badge">0</span>
+          </div>
+          <button id="sidebarToggle" aria-label="Toggle Sidebar">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+    </header>   
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+          <!-- Add a window close icon for closing the sidebar -->
+          <button id="closeSidebar" aria-label="Close Sidebar">
+            <i class="fa fa-window-close"></i>
+          </button>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="index">Home</a></li>
+          <li><a href="products">Products</a></li>
+          <li><a href="login">Sign In</a></li>
+        </ul>
+    </div> 
+    {% for message in messages%}
+    <h5>{message}%</h5>
+    {% endfor %}
+    <div class='loginForm'>
+        <h2>Sign up below</h2>
+        <form method="POST" action="register">
+            {% csrf_token %}
+            <div class="inputField">
+                <input type="text" name="username" id="" required>
+                <label for="">Username</label>
+            </div>
+            <div class="inputField">
+                <input type="email" name="email" id="" required>
+                <label for="">email</label>
+            </div>  
+            <div class="inputField">
+                <input type="password" name="password" id="" required>
+                <label for="">Password</label>
+            </div>
+            <div class="inputField">
+                <input type="password" name="password2" id="" required>
+                <label for="">Repeat Password</label>
+            </div>
+    
+            <button class="log">Create Account</button>
+        </form>
+        
+        <div class="link">
+            <a href="login">Login</a>
+        </div>
+    </div>
+    <script src="{% static "\script\login.js" %}"></script>
+</body>
+
